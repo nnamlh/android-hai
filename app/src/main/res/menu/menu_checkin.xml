@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.congtyhai.activity.checkin.CheckInActivity">
+    <item
+        android:id="@+id/action_history"
+        android:orderInCategory="1"
+        android:title="Lịch sử"
+        android:icon="@mipmap/history"
+        app:showAsAction="always" />
+</menu>

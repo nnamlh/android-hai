@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_contact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#EDEDED"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.support.ContactActivity"
+    tools:showIn="@layout/activity_contact">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CÔNG TY CỔ PHẦN NÔNG DƯỢC HAI"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#000"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="28 Mạc Đĩnh Chi, Phường ĐaKao, Quận 1, Tp.Hồ Chí Minh"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điện thoại: 0838.292.805"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fax: 0838.223.088"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MST: 0301.242.080"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mail: info@congtyhai.com"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <ImageView
+        android:layout_width="204dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/hot_line"/>
+
+</LinearLayout>

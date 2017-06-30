@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_product_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.product.ProductManageActivity"
+    tools:showIn="@layout/activity_product_manage">
+
+    <RelativeLayout
+        android:id="@+id/layout_receiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_login"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/btnfind"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="findClick"
+            android:src="@mipmap/findagency" />
+
+        <EditText
+            android:id="@+id/edit_receive"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:hint="Nhập kho nhận"
+            android:layout_toLeftOf="@id/btnfind"
+            android:background="#fff"
+            android:paddingLeft="5dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_agency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_login"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/btnfindagency"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="findAgencyClick"
+            android:src="@mipmap/findagency" />
+
+        <EditText
+            android:id="@+id/edit_agency"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:hint="Nhập kho nhận"
+            android:layout_toLeftOf="@id/btnfindagency"
+            android:background="#fff"
+            android:paddingLeft="5dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_login"
+        android:layout_marginTop="10dp"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/btnadd"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:onClick="addProductClick"
+            android:src="@mipmap/ic_add" />
+
+        <EditText
+            android:id="@+id/edit_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/btnadd"
+            android:background="#fff"
+            android:hint="Nhập mã sản phẩm.."
+            android:imeActionId="@+id/input_text"
+            android:imeActionLabel="Thêm"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textCapWords"
+            android:paddingLeft="5dp" />
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <Button
+            android:id="@+id/btnscan"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_checkin"
+            android:text="BARCODE"
+            android:textColor="#fff" />
+
+
+        <Button
+            android:id="@+id/btnsend"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_checkin"
+            android:text="CẬP NHẬT"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtcount"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="Tổng số lượng : "
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+
+    <ListView
+        android:id="@+id/listproduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/gray_color"
+        android:dividerHeight="1dp"
+        android:scrollbars="none" />
+
+</LinearLayout>

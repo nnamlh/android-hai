@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.search.FindReceiverActivity"
+    tools:showIn="@layout/activity_find_receiver">
+
+
+    <!-- Editext for Search -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/input_login"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/btnsearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/findagency" />
+
+        <EditText
+            android:id="@+id/inputSearch"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/btnsearch"
+            android:hint="Tên hoặc mã.."
+            android:imeActionId="@+id/search"
+            android:background="#fff"
+            android:imeActionLabel="Tìm kiếm"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+            android:paddingLeft="5dp" />
+
+    </RelativeLayout>
+
+    <!-- List View -->
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

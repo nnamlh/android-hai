@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "79677612316",
+    "firebase_url": "https://nongduochai-87ce3.firebaseio.com",
+    "project_id": "nongduochai-87ce3",
+    "storage_bucket": "nongduochai-87ce3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79677612316:android:c76c027ca0829ca8",
+        "android_client_info": {
+          "package_name": "com.congtyhai.activity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79677612316-cn1e1ek0m5mc7hpfqqu6vfnvgb9hlvaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAUBldnBjiuBeHdVDyyZn-9tVaiL23u-8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

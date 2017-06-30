@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.congtyhai.activity">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name="com.congtyhai.app.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Login.NoActionBar" />
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".checkin.CheckInActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_check_in"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".CheckStaffActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_check_staff"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Firebase Notifications -->
+        <service android:name="com.congtyhai.service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.congtyhai.service.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+
+        <activity
+            android:name=".product.ProductActivity"
+            android:label="@string/title_activity_product"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".product.ProductManageActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_product_manage"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".notification.NotificationActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name="com.congtyhai.service.HaiService"
+            android:exported="false" />
+
+        <activity
+            android:name=".checkin.CheckInHistoryActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_check_in_history"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".event.EventActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".support.SettingActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".search.ShowAgencyActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_show_agency"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".support.MsgToHaiActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_msg_to_hai"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".event.EventDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_event_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".event.EventSendActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_event_send"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".product.TrackingActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_tracking"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".product.ChooseProductFuncActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_choose_product_func"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".notification.NotificationDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_notification_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".support.UserInfoActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_user_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".event.ScanEventCodeActivity"
+            android:label="@string/title_activity_scan_event_code"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".support.ContactActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_contact"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".product.ProductEventDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_product_event_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".util.SimpleScanActivity"
+            android:label="@string/simple_scan_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".event.SendCodeResultActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_send_code_result"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".search.FindReceiverActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_find_receiver"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".util.ShowCameraActivity"
+            android:theme="@style/Theme.Demo" />
+    </application>
+
+</manifest>

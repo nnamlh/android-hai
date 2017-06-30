@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_check_staff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.CheckStaffActivity"
+    tools:showIn="@layout/activity_check_staff">
+
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <View
+          android:id="@+id/staff_banner"
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          android:layout_marginTop="1dp"
+          android:layout_alignParentTop="true"
+          android:background="@color/bggreen"/>
+
+
+      <ImageView
+          android:id="@+id/staff_image"
+          android:layout_width="100dp"
+          android:layout_height="133dp"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginRight="10dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="16dp"
+          android:src="@mipmap/avatar" />
+
+      <TextView
+          android:id="@+id/staff_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:layout_toRightOf="@id/staff_image"
+          android:fontFamily="sans-serif-black"
+          android:text="HỌ VÀ TÊN"
+          android:textColor="#fff"
+          android:textSize="12sp" />
+
+      <TextView
+          android:id="@+id/staff_code"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/staff_name"
+          android:layout_toRightOf="@id/staff_image"
+          android:textColor="#fff"
+          android:textSize="12sp"
+          android:text="Mã nhân viên" />
+
+      <TextView
+          android:id="@+id/staff_stt"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/staff_code"
+          android:layout_toRightOf="@id/staff_image"
+          android:text="Tình trạng"
+          android:textColor="#fff"
+          android:textSize="12sp"
+          android:textStyle="italic" />
+
+
+      <TextView
+          android:id="@+id/staff_position_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="20dp"
+          android:layout_below="@id/staff_image"
+          android:text="Chức vụ :" />
+
+      <TextView
+          android:id="@+id/staff_position"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="sans-serif-black"
+          android:text="Chức vụ nhân viên"
+          android:layout_marginLeft="20dp"
+          android:layout_below="@id/staff_position_title"
+          android:textColor="#000"
+          android:textSize="14sp" />
+
+
+      <TextView
+          android:id="@+id/staff_branch_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_below="@id/staff_position"
+          android:layout_marginLeft="20dp"
+          android:text="Chi nhánh :" />
+
+      <TextView
+          android:id="@+id/staff_branch"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:fontFamily="sans-serif-black"
+          android:text="Thông tin chi nhánh"
+          android:textColor="#000"
+          android:layout_below="@id/staff_branch_title"
+          android:textSize="14sp" />
+
+      <TextView
+          android:id="@+id/staff_address_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_below="@id/staff_branch"
+          android:layout_marginLeft="20dp"
+          android:text="Địa chỉ :" />
+
+      <TextView
+          android:id="@+id/staff_address"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="sans-serif-black"
+          android:text="Địa chỉ nhân viên"
+          android:layout_below="@id/staff_address_title"
+          android:layout_marginLeft="20dp"
+          android:textColor="#000"
+          android:textSize="14sp" />
+
+      <TextView
+          android:id="@+id/staff_signture_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_below="@id/staff_address"
+          android:layout_marginLeft="20dp"
+          android:text="Chữ ký :" />
+
+
+      <ImageView
+          android:id="@+id/staff_signture"
+          android:layout_width="100dp"
+          android:layout_height="60dp"
+          android:layout_below="@id/staff_signture_title"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="20dp"
+          android:src="@mipmap/signture" />
+
+      <Button
+          android:id="@+id/staff_check"
+          style="@style/Widget.AppCompat.Button.Colored"
+          android:layout_width="200dp"
+          android:layout_height="50dp"
+          android:layout_marginTop="10dp"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@id/staff_signture"
+          android:drawableLeft="@android:drawable/ic_dialog_dialer"
+          android:text="QUÉT MÃ" />
+
+      <ProgressBar
+          android:id="@+id/staff_progress"
+          style="?android:attr/progressBarStyleLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@id/staff_signture"
+          android:visibility="gone" />
+
+  </RelativeLayout>
+
+</ScrollView>

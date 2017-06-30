@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_event_send"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.event.EventSendActivity"
+    tools:showIn="@layout/activity_event_send">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="1dp"
+       android:background="@drawable/input_login">
+
+
+       <ImageView
+           android:layout_width="35dp"
+           android:layout_height="35dp"
+           android:src="@mipmap/ic_add"
+           android:layout_alignParentRight="true"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
+           android:onClick="addCodeClick"
+           android:id="@+id/btnadd"/>
+
+
+       <EditText android:id="@+id/event_input"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:hint="Nhập mã thẻ.."
+           android:paddingLeft="5dp"
+           android:layout_toLeftOf="@id/btnadd"
+           android:imeActionId="@+id/input_text"
+           android:imeActionLabel="Thêm"
+           android:background="#fff"
+           android:imeOptions="actionUnspecified"
+           android:inputType="textCapWords"/>
+
+
+   </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/event_scan"
+            android:background="@drawable/btn_checkin"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:onClick="scanCodeClick"
+            android:layout_marginTop="10dp"
+            android:text="BARCODE" />
+
+        <Button
+            android:id="@+id/event_send"
+            android:background="@drawable/btn_checkin"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:onClick="sendCodeClick"
+            android:layout_marginTop="10dp"
+            android:text="GỬI MÃ" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="10dp"
+        android:text="Danh sách mã gửi đi" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

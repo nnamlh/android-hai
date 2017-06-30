@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.congtyhai.activity.product.ProductManageActivity">
+    <item
+        android:id="@+id/action_history"
+        android:orderInCategory="100"
+        android:title="Xem lịch sử"
+        app:showAsAction="always" />
+</menu>

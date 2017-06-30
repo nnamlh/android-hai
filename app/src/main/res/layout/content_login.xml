@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.LoginActivity"
+    tools:showIn="@layout/activity_login">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:src="@mipmap/logofull" />
+
+    <View
+        android:id="@+id/login_divide"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_divide"
+        android:background="@color/bggreen" />
+
+    <EditText
+        android:id="@+id/login_user"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_above="@id/login_divide"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/input_login"
+        android:hint="Tên đăng nhập"
+        android:inputType="text"
+        android:paddingLeft="5dp" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/login_divide"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/input_login"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:imeActionId="@+id/login"
+        android:imeActionLabel="Đăng nhập"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:singleLine="true" />
+
+
+    <Button
+        android:id="@+id/login_ok"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/login_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="@drawable/text_color"
+        android:background="@drawable/button_login"
+        android:text="ĐĂNG NHẬP"
+        android:textSize="18sp" />
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

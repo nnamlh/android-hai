@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">CSKH HAI</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">ĐĂNG NHẬP</string>
+    <string name="title_activity_main">NÔNG DƯỢC HAI</string>
+    <string name="title_activity_check_in">Check in</string>
+    <string name="title_activity_check_staff">Thông tin nhân viên</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_product">Quét sản phẩm</string>
+    <string name="title_activity_product_manage">Quản lý sản phẩm</string>
+    <string name="title_activity_notification">Thông báo</string>
+    <string name="title_activity_check_in_history">Lịch sử checkin</string>
+    <string name="title_activity_event">Sự kiện khách hàng</string>
+    <string name="title_activity_setting">Quản lý ứng dụng</string>
+    <string name="title_activity_show_agency">Danh sách đại lý</string>
+    <string name="title_activity_msg_to_hai">Gửi tới HAI</string>
+
+    <string name="spinner_msg">Chọn yêu cầu</string>
+    <string name="title_activity_event_detail">Thông tin sự kiện</string>
+    <string name="title_activity_event_send">Gửi mã tích điểm</string>
+    <string name="title_activity_tracking">Kiểm tra sản phẩm</string>
+    <string name="title_activity_choose_product_func">Quản lý sản phẩm</string>
+    <string name="title_activity_notification_detail">Chi tiết thông báo</string>
+    <string name="title_activity_user_info">Thông tin tài khoản</string>
+    <string name="title_activity_scan_event_code">Quét mã khuyến mãi</string>
+    <string name="spinner_agency">Chọn loại đại lý</string>
+    <string name="title_activity_contact">Liên hệ</string>
+    <string name="title_activity_product_event_detail">Sản phẩm tích điểm</string>
+    <string name="simple_scan_title">HAI</string>
+    <string name="title_activity_send_code_result">Kết quả tích điểm</string>
+    <string name="title_activity_find_receiver">Tìm nơi nhận</string>
+</resources>

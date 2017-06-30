@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_tracking"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.congtyhai.activity.product.TrackingActivity"
+    tools:showIn="@layout/activity_tracking">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_login"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/event_scan"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:onClick="scanCodeClick"
+            android:src="@mipmap/ic_scan" />
+
+
+        <EditText
+            android:id="@+id/event_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@id/event_scan"
+            android:background="#fff"
+            android:hint="Nhập mã sản phẩm.."
+            android:imeActionId="@+id/input_text"
+            android:imeActionLabel="Kiểm tra"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textCapWords"
+            android:paddingLeft="5dp" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/event_send"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_checkin"
+        android:onClick="sendCodeClick"
+        android:text="KIỂM TRA"
+        android:textColor="#fff" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Thông tin hành trình sản phẩm" />
+
+    <TextView
+        android:id="@+id/trackingstt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Trạng thái"
+        android:textColor="#ff0000"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
