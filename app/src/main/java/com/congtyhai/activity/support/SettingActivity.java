@@ -65,7 +65,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void unTopics() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.SHARED_PREF, 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.getInstance().SHARED_PREF, 0);
         String topics = pref.getString("topics", null);
 
         if (!TextUtils.isEmpty(topics)) {
@@ -102,8 +102,9 @@ public class SettingActivity extends BaseActivity {
                     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPref.edit();
                     // editor.putString(HaiSetting.KEY_USER, "");
-                    editor.putString(HaiSetting.KEY_TOKEN, null);
-                    editor.putString(HaiSetting.KEY_ROLE, null);
+                    editor.putString(HaiSetting.getInstance().KEY_TOKEN, null);
+                    editor.putString(HaiSetting.getInstance().KEY_ROLE, null);
+                    editor.putString(HaiSetting.getInstance().KEY_UPDATE_DAILY, null);
                     editor.commit();
 
                     Intent intent2 = new Intent(SettingActivity.this, LoginActivity.class);

@@ -13,7 +13,7 @@ public class ApiClientUpload {
     public static Retrofit getClient() {
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(HaiSetting.BASEURL_UPLOAD)
+                    .baseUrl(HaiSetting.getInstance().BASEURL_UPLOAD)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

@@ -97,7 +97,7 @@ public class HaiService extends Service {
                     isRunning = true;
 
                     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    String token = sharedPref.getString(HaiSetting.KEY_TOKEN, "");
+                    String token = sharedPref.getString(HaiSetting.getInstance().KEY_TOKEN, "");
 
                     List<DCheckIn> arrays = RealmController.getInstance().getCheckIns();
 
@@ -277,7 +277,7 @@ public class HaiService extends Service {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(HaiSetting.NOTIFICATION_ID, notification);
+        notificationManager.notify(HaiSetting.getInstance().NOTIFICATION_ID, notification);
     }
 
     @Override

@@ -101,9 +101,9 @@ public class CheckStaffActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // checking for type intent filter
-                if (intent.getAction().equals(HaiSetting.REGISTRATION_COMPLETE)) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(HaiSetting.TOPIC_GLOBAL);
-                } else if (intent.getAction().equals(HaiSetting.PUSH_NOTIFICATION)) {
+                if (intent.getAction().equals(HaiSetting.getInstance().REGISTRATION_COMPLETE)) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(HaiSetting.getInstance().TOPIC_GLOBAL);
+                } else if (intent.getAction().equals(HaiSetting.getInstance().PUSH_NOTIFICATION)) {
                     String message = intent.getStringExtra("message");
                     String title = intent.getStringExtra("title");
                     showNotification(title, message);
@@ -134,7 +134,7 @@ public class CheckStaffActivity extends AppCompatActivity {
     }
     private void makeJsonRequest(String user, String token, String code) {
 
-        String URL = HaiSetting.BASEURL + "rest/checkstaff?code=" +code+"&user=" + user + "&token=" + token;
+        String URL = HaiSetting.getInstance().BASEURL + "rest/checkstaff?code=" +code+"&user=" + user + "&token=" + token;
         showProgress(true);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, URL,
                 null, new Response.Listener<JSONObject>() {
@@ -236,10 +236,10 @@ public class CheckStaffActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(HaiSetting.REGISTRATION_COMPLETE));
+                new IntentFilter(HaiSetting.getInstance().REGISTRATION_COMPLETE));
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(HaiSetting.PUSH_NOTIFICATION));
+                new IntentFilter(HaiSetting.getInstance().PUSH_NOTIFICATION));
 
         NotificationUtils.clearNotifications(getApplicationContext());
     }

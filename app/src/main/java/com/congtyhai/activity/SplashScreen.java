@@ -191,9 +191,9 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String user = sharedPref.getString(HaiSetting.KEY_USER, null);
-                String token = sharedPref.getString(HaiSetting.KEY_TOKEN, null);
-                String role = sharedPref.getString(HaiSetting.KEY_ROLE, null);
+                String user = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
+                String token = sharedPref.getString(HaiSetting.getInstance().KEY_TOKEN, null);
+                String role = sharedPref.getString(HaiSetting.getInstance().KEY_ROLE, null);
 
                 if (token == null) {
                     Intent i = new Intent(SplashScreen.this, LoginActivity.class);
@@ -222,7 +222,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private void makeJsonRequest(String user, String token) {
 
-        String URL = HaiSetting.BASEURL + "rest/loginsession?user=" + user + "&token=" + token;
+        String URL = HaiSetting.getInstance().BASEURL + "rest/loginsession?user=" + user + "&token=" + token;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, URL,
                 null, new Response.Listener<JSONObject>() {

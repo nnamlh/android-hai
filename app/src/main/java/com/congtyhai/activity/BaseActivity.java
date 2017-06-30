@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -23,6 +24,8 @@ import android.view.View;
 
 import com.congtyhai.model.receive.AgencyInfo;
 import com.congtyhai.model.HaiLocation;
+import com.congtyhai.model.receive.ProductCodeInfo;
+import com.congtyhai.model.receive.ReceiveInfo;
 import com.congtyhai.service.GPSTracker;
 import com.congtyhai.service.HaiService;
 import com.congtyhai.util.HaiSetting;
@@ -34,11 +37,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -66,9 +77,9 @@ public class BaseActivity extends AppCompatActivity {
      */
     protected Location mLastLocation;
 
-    SharedPreferences sharedPref ;
+    SharedPreferences sharedPref;
 
-   protected Realm realm;
+    protected Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +88,9 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // checking for type intent filter
-                if (intent.getAction().equals(HaiSetting.REGISTRATION_COMPLETE)) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(HaiSetting.TOPIC_GLOBAL);
-                } else if (intent.getAction().equals(HaiSetting.PUSH_NOTIFICATION)) {
+                if (intent.getAction().equals(HaiSetting.getInstance().REGISTRATION_COMPLETE)) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(HaiSetting.getInstance().TOPIC_GLOBAL);
+                } else if (intent.getAction().equals(HaiSetting.getInstance().PUSH_NOTIFICATION)) {
                     String message = intent.getStringExtra("message");
                     String title = intent.getStringExtra("title");
                     showNotification(title, message);
@@ -107,7 +118,7 @@ public class BaseActivity extends AppCompatActivity {
             Intent intentSv = new Intent(BaseActivity.this, HaiService.class);
             startService(intentSv);
         }
-        sharedPref =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         //
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -126,51 +137,149 @@ public class BaseActivity extends AppCompatActivity {
         }
         if (latitude == 0 && longitude == 0) {
 
-         if(gps != null) {
-             latitude = gps.getLatitude();
-             longitude = gps.getLongitude();
-         }
+            if (gps != null) {
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+            }
         }
 
         return new HaiLocation(latitude, longitude);
     }
 
     protected String getListMainFunction() {
-       return sharedPref.getString(HaiSetting.KEY_FUNCTION, "");
+        return sharedPref.getString(HaiSetting.getInstance().KEY_FUNCTION, "");
     }
 
     protected void setListMainFunction(String funcs) {
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(HaiSetting.KEY_FUNCTION, funcs);
+        editor.putString(HaiSetting.getInstance().KEY_FUNCTION, funcs);
         editor.commit();
     }
 
     protected List<AgencyInfo> getListAgency() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String str = sharedPref.getString(HaiSetting.KEY_LIST_AGENCY, "");
-        Type listType = new TypeToken<List<AgencyInfo>>() {}.getType();
-        return new Gson().fromJson(str, listType);
+        //  return RealmController.getInstance().getAgency();
+        Gson gson = new Gson();
+        try {
+
+            File file = new File(
+                    Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+                    "HAI");
+            BufferedReader br = new BufferedReader(
+                    new FileReader(file.getAbsoluteFile() +  HaiSetting.getInstance().PATH_AGENCY_JSON));
+
+            Type listType = new TypeToken<List<AgencyInfo>>() {
+            }.getType();
+            return gson.fromJson(br, listType);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
     }
 
-    protected void setListAgency (String agencies) {
+    protected List<ProductCodeInfo> getListProduct() {
+        //  return RealmController.getInstance().getAgency();
+        Gson gson = new Gson();
+        try {
+
+            File file = new File(
+                    Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+                    "HAI");
+            BufferedReader br = new BufferedReader(
+                    new FileReader(file.getAbsoluteFile() +  HaiSetting.getInstance().PATH_PRODUCT_JSON));
+
+            Type listType = new TypeToken<List<ProductCodeInfo>>() {
+            }.getType();
+            return gson.fromJson(br, listType);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
+    }
+
+    private void writeFile(String json, String path) {
+        try {
+            File file = new File(
+                    Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+                    "HAI");
+
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+
+
+
+            FileWriter writer = new FileWriter(file.getAbsoluteFile() + path);
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void saveListAgency(AgencyInfo[] agencies) {
+        Gson gson = new Gson();
+        writeFile(gson.toJson(agencies), HaiSetting.getInstance().PATH_AGENCY_JSON);
+    }
+
+    protected List<ReceiveInfo> getListReceive() {
+        Gson gson = new Gson();
+        try {
+
+            File file = new File(
+                    Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+                    "HAI");
+            BufferedReader br = new BufferedReader(
+                    new FileReader(file.getAbsoluteFile() +  HaiSetting.getInstance().PATH_RECEIVE_JSON));
+
+            Type listType = new TypeToken<List<ReceiveInfo>>() {
+            }.getType();
+            return gson.fromJson(br, listType);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
+    }
+
+    protected void saveListReceive(ReceiveInfo[] receiveInfo) {
+        Gson gson = new Gson();
+        writeFile(gson.toJson(receiveInfo), HaiSetting.getInstance().PATH_RECEIVE_JSON);
+    }
+
+    protected void saveListProduct(final ProductCodeInfo[] productCodeInfos) {
+        Gson gson = new Gson();
+        writeFile(gson.toJson(productCodeInfos), HaiSetting.getInstance().PATH_PRODUCT_JSON);
+    }
+
+    protected void updateDaily() {
+        String timeStamp = new SimpleDateFormat("ddMMyyyy",
+                Locale.getDefault()).format(new Date());
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(HaiSetting.KEY_LIST_AGENCY, agencies);
+        editor.putString(HaiSetting.getInstance().KEY_UPDATE_DAILY, timeStamp);
         editor.commit();
     }
 
-    protected List<AgencyInfo> getListReceive() {
-       // Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String str = sharedPref.getString(HaiSetting.KEY_LIST_RECEIVE, "");
-        Type listType = new TypeToken<List<AgencyInfo>>() {}.getType();
-        return new Gson().fromJson(str, listType);
-    }
-
-    protected void setListReceive (String agencies) {
+    protected int needUpdateDaily() {
+        String timeStamp = new SimpleDateFormat("ddMMyyyy",
+                Locale.getDefault()).format(new Date());
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(HaiSetting.KEY_LIST_RECEIVE, agencies);
-        editor.commit();
-    }
+        String data = sharedPref.getString(HaiSetting.getInstance().KEY_UPDATE_DAILY, "");
+        if (timeStamp.equals(data))
+            return 0;
+        else
+            return 1;
 
+        // 1:
+    }
 
     protected void showpDialog() {
         if (!pDialog.isShowing())
@@ -243,10 +352,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(HaiSetting.REGISTRATION_COMPLETE));
+                new IntentFilter(HaiSetting.getInstance().REGISTRATION_COMPLETE));
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(HaiSetting.PUSH_NOTIFICATION));
+                new IntentFilter(HaiSetting.getInstance().PUSH_NOTIFICATION));
 
         NotificationUtils.clearNotifications(getApplicationContext());
     }

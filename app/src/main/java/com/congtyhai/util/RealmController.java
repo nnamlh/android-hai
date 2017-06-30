@@ -75,6 +75,17 @@ public class RealmController {
         });
     }
 
+    public void clearAll(final Class object) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(object);
+            }
+
+        });
+    }
+
+
     //find all objects in the Book.class
     public RealmResults<NotificationInfo> getNotificaitons() {
 

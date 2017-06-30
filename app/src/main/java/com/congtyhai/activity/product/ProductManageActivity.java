@@ -89,13 +89,13 @@ public class ProductManageActivity extends BaseActivity {
 
         status = intent.getStringExtra("STATUS");
 
-        if (status.equals(HaiSetting.PRODUCT_IMPORT)) {
+        if (status.equals(HaiSetting.getInstance().PRODUCT_IMPORT)) {
             title = "Nhập kho";
             eReceiver.setText("");
-        } else if (status.equals(HaiSetting.PRODUCT_EXPORT)) {
+        } else if (status.equals(HaiSetting.getInstance().PRODUCT_EXPORT)) {
             title = "Xuất kho";
             lReceiver.setVisibility(View.VISIBLE);
-        } else if (status.equals(HaiSetting.PRODUCT_HELP_SCAN)) {
+        } else if (status.equals(HaiSetting.getInstance().PRODUCT_HELP_SCAN)) {
             title = "Nhập giúp";
             lAgency.setVisibility(View.VISIBLE);
         } else {
@@ -418,7 +418,7 @@ public class ProductManageActivity extends BaseActivity {
                 .setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        if (status.equals(HaiSetting.PRODUCT_HELP_SCAN)) {
+                        if (status.equals(HaiSetting.getInstance().PRODUCT_HELP_SCAN)) {
                             if (checkLocation()) {
                                 if (TextUtils.isEmpty(txtAgency.getText().toString())) {
                                     Toast.makeText(ProductManageActivity.this, "Nhập mã đại lý", Toast.LENGTH_LONG).show();

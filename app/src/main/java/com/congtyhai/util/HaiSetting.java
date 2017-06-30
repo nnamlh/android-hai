@@ -1,5 +1,7 @@
 package com.congtyhai.util;
 
+import android.os.Environment;
+
 import com.congtyhai.model.receive.AgencyInfo;
 import com.congtyhai.model.receive.EventProduct;
 import com.congtyhai.model.receive.GeneralInfo;
@@ -28,10 +30,10 @@ public class HaiSetting {
 
     private List<String> EVENTCODES = new ArrayList<>();
 
-    public static String ROLE_WAREHOUSE = "Warehouse";
-    public static String PRODUCT_IMPORT = "NK";
-    public static String PRODUCT_EXPORT = "XK";
-    public static String PRODUCT_HELP_SCAN = "HELPSCAN";
+    public String ROLE_WAREHOUSE = "Warehouse";
+    public String PRODUCT_IMPORT = "NK";
+    public String PRODUCT_EXPORT = "XK";
+    public String PRODUCT_HELP_SCAN = "HELPSCAN";
 
     protected HaiSetting() {
         LIST_PRODUCT = new ArrayList<>();
@@ -121,39 +123,36 @@ public class HaiSetting {
     }
 
     // global topic to receive app wide push notifications
-    public static final String TOPIC_GLOBAL = "global";
+    public final String TOPIC_GLOBAL = "global";
 
     // broadcast receiver intent filters
-    public static final String REGISTRATION_COMPLETE = "registrationComplete";
-    public static final String PUSH_NOTIFICATION = "pushNotification";
+    public final String REGISTRATION_COMPLETE = "registrationComplete";
+    public final String PUSH_NOTIFICATION = "pushNotification";
 
     // id to handle the notification in the notification tray
-    public static final int NOTIFICATION_ID = 100;
-    public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
+    public final int NOTIFICATION_ID = 100;
+    public final int NOTIFICATION_ID_BIG_IMAGE = 101;
 
-    public static final String SHARED_PREF = "ah_firebase";
+    public final String SHARED_PREF = "ah_firebase";
 
+    public final String PATH_AGENCY_JSON = "/agency.json";
+    public final String PATH_RECEIVE_JSON = "/receive.json";
+    public final String PATH_PRODUCT_JSON = "/product.json";
 
-    public static final String ACTION_CHECK_IN = "CHECKIN";
-    public static final String ACTION_CHECK_STAFF = "CHECKSTAFF";
-    public static final String ACTION_PRODUCT = "PRODUCT";
-    public static final String ACTION_NOTIFICATION = "NOTIFICATION";
-    public static final String ACTION_SETTING = "SUPPORT";
-    public static final String ACTION_EVENT = "EVENTS";
-
-    public static final String KEY_EVENT_COUNT = "COUNTEVENT";
+    public  final String KEY_EVENT_COUNT = "COUNTEVENT";
     //public static final String BASEURL = "http://api.nongduochai.vn/api/";
     //public static final String BASEURL_UPLOAD = "http://cskh.nongduochai.vn/";
-    public static final String BASEURL = "http://221.133.7.92:802/api/";
-    public static final String BASEURL_UPLOAD = "http://221.133.7.92:801/";
+    public final String BASEURL = "http://221.133.7.92:802/api/";
+    public final String BASEURL_UPLOAD = "http://221.133.7.92:801/";
 
 
-    public static final String KEY_USER = "userlogin";
-    public static final String KEY_TOKEN = "tokenlogin";
-    public static final String KEY_FUNCTION = "functionlogin";
-    public static final String KEY_ROLE = "rolelogin";
-    public static final String KEY_LIST_AGENCY = "listagency";
-    public static final String KEY_LIST_RECEIVE = "listreceive";
+    public final String KEY_USER = "userlogin";
+    public final String KEY_TOKEN = "tokenlogin";
+    public final String KEY_FUNCTION = "functionlogin";
+    public final String KEY_ROLE = "rolelogin";
+    public final String KEY_LIST_AGENCY = "listagency";
+    public final String KEY_LIST_RECEIVE = "listreceive";
+    public final String KEY_UPDATE_DAILY = "updatedatadaily";
 
     public List<ResultEventInfo> getResultEventInfos() {
         if (resultEventInfos == null) {

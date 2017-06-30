@@ -52,6 +52,12 @@ public class MainActivity extends BaseActivity {
 
     private int imagesToShow[] = {R.mipmap.banner_1, R.mipmap.banner_2, R.mipmap.banner_3, R.mipmap.banner_4, R.mipmap.banner_5};
 
+    public static final String ACTION_CHECK_IN = "CHECKIN";
+    public static final String ACTION_CHECK_STAFF = "CHECKSTAFF";
+    public static final String ACTION_PRODUCT = "PRODUCT";
+    public static final String ACTION_NOTIFICATION = "NOTIFICATION";
+    public static final String ACTION_SETTING = "SUPPORT";
+    public static final String ACTION_EVENT = "EVENTS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,19 +77,20 @@ public class MainActivity extends BaseActivity {
 
         getTopic();
 
-
     }
 
 
     private void getTopic() {
         showpDialog();
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.SHARED_PREF, 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.getInstance().SHARED_PREF, 0);
         String token = pref.getString("regId", null);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        FirebaseReg info = new FirebaseReg(HaiSetting.getInstance().USER, HaiSetting.getInstance().TOKEN, token);
+        final int needUpdate = needUpdateDaily();
+
+        FirebaseReg info = new FirebaseReg(HaiSetting.getInstance().USER, HaiSetting.getInstance().TOKEN, token, needUpdate);
 
         Call<ResultTopic> call = apiService.updateReg(info);
 
@@ -100,9 +107,11 @@ public class MainActivity extends BaseActivity {
 
                         setListMainFunction(response.body().getFunction());
 
-                        setListAgency(response.body().getAgencies());
-
-                        setListReceive(response.body().getRecivers());
+                        if (needUpdate == 1) {
+                            saveListAgency(response.body().getAgencies());
+                            saveListReceive(response.body().getRecivers());
+                            saveListProduct(response.body().getProducts());
+                        }
                     }
                 }
                 initList(true);
@@ -119,7 +128,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void storeTopicInPref(String[] topics) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.SHARED_PREF, 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.getInstance().SHARED_PREF, 0);
         SharedPreferences.Editor editor = pref.edit();
 
         StringBuilder builder = new StringBuilder();
@@ -159,26 +168,26 @@ public class MainActivity extends BaseActivity {
                 String item = jsonArray.getString(i);
                 switch (item) {
                     case "checkin":
-                        actionInfos.add(new ActionInfo("Lịch công tác", "Ghé thăm khách hàng", R.mipmap.checkin, HaiSetting.ACTION_CHECK_IN, 0));
+                        actionInfos.add(new ActionInfo("Lịch công tác", "Ghé thăm khách hàng", R.mipmap.checkin, ACTION_CHECK_IN, 0));
                         break;
                     case "checkstaff":
-                        actionInfos.add(new ActionInfo("Kiểm tra nhân viên", "Kiểm tra thông tin nhân viên HAI", R.mipmap.checkstaff, HaiSetting.ACTION_CHECK_STAFF, 0));
+                        actionInfos.add(new ActionInfo("Kiểm tra nhân viên", "Kiểm tra thông tin nhân viên HAI", R.mipmap.checkstaff, ACTION_CHECK_STAFF, 0));
                         break;
                     case "product":
-                        actionInfos.add(new ActionInfo("Quản lý sản phẩm", "Quản lý sản phẩm của HAI", R.mipmap.packing, HaiSetting.ACTION_PRODUCT, 0));
+                        actionInfos.add(new ActionInfo("Quản lý sản phẩm", "Quản lý sản phẩm của HAI", R.mipmap.packing, ACTION_PRODUCT, 0));
                         break;
                     case "event":
-                        actionInfos.add(new ActionInfo("Chương trình khuyến mãi", "Dành cho khách hàng của HAI", R.mipmap.event, HaiSetting.ACTION_EVENT, countEvent));
+                        actionInfos.add(new ActionInfo("Chương trình khuyến mãi", "Dành cho khách hàng của HAI", R.mipmap.event, ACTION_EVENT, countEvent));
                         break;
                     case "newfeed":
-                        ActionInfo actionInfo = new ActionInfo("Thông báo", "Thông báo từ HAI", R.mipmap.newfeed, HaiSetting.ACTION_NOTIFICATION, notificationInfos.size());
+                        ActionInfo actionInfo = new ActionInfo("Thông báo", "Thông báo từ HAI", R.mipmap.newfeed, ACTION_NOTIFICATION, notificationInfos.size());
                         actionInfo.setFirst(fist);
                         actionInfos.add(actionInfo);
                         break;
                 }
             }
 
-            actionInfos.add(new ActionInfo("Hổ trợ", "Quản lý ứng dụng", R.mipmap.setting, HaiSetting.ACTION_SETTING, 0));
+            actionInfos.add(new ActionInfo("Hổ trợ", "Quản lý ứng dụng", R.mipmap.setting, ACTION_SETTING, 0));
 
         } catch (Exception e) {
 
@@ -194,32 +203,32 @@ public class MainActivity extends BaseActivity {
                 String action = actionInfos.get(i).getActiion();
                 Intent intent = null;
                 switch (action) {
-                    case HaiSetting.ACTION_CHECK_IN:
+                    case ACTION_CHECK_IN:
                         if (checkLocation()) {
                             intent = new Intent(MainActivity.this, CheckInActivity.class);
                             startActivity(intent);
                         }
                         break;
-                    case HaiSetting.ACTION_CHECK_STAFF:
+                    case ACTION_CHECK_STAFF:
                         intent = new Intent(MainActivity.this, CheckStaffActivity.class);
                         startActivity(intent);
                         break;
-                    case HaiSetting.ACTION_PRODUCT:
+                    case ACTION_PRODUCT:
                         if (checkLocation()) {
                             intent = new Intent(MainActivity.this, ChooseProductFuncActivity.class);
                             startActivity(intent);
                         }
                         break;
-                    case HaiSetting.ACTION_EVENT:
+                    case ACTION_EVENT:
                         countEvent = 0;
                         intent = new Intent(MainActivity.this, EventActivity.class);
                         startActivity(intent);
                         break;
-                    case HaiSetting.ACTION_NOTIFICATION:
+                    case ACTION_NOTIFICATION:
                         intent = new Intent(MainActivity.this, NotificationActivity.class);
                         startActivity(intent);
                         break;
-                    case HaiSetting.ACTION_SETTING:
+                    case ACTION_SETTING:
                         intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);
                         break;

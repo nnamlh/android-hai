@@ -32,7 +32,10 @@ public class ResultTopic {
     private AgencyInfo[] agencies;
 
     @SerializedName("recivers")
-    private AgencyInfo[] recivers;
+    private ReceiveInfo[] recivers;
+
+    @SerializedName("products")
+    private ProductCodeInfo[] products;
 
 
     public String getId() {
@@ -77,24 +80,27 @@ public class ResultTopic {
     }
 
 
-
-    public String getAgencies() {
-
-        Gson gson = new Gson();
-
-        return gson.toJson(agencies).toString();
-    }
-
     public void setAgencies(AgencyInfo[] agencies) {
         this.agencies = agencies;
     }
 
-    public String getRecivers() {
-        Gson gson = new Gson();
-        return gson.toJson(recivers).toString();
+    public void setRecivers(ReceiveInfo[] recivers) {
+        this.recivers = recivers;
     }
 
-    public void setRecivers(AgencyInfo[] recivers) {
-        this.recivers = recivers;
+    public AgencyInfo[] getAgencies() {
+        return agencies;
+    }
+
+    public ReceiveInfo[] getRecivers() {
+        return recivers;
+    }
+
+    public ProductCodeInfo[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(ProductCodeInfo[] products) {
+        this.products = products;
     }
 }

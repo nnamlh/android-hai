@@ -72,15 +72,15 @@ public class ChooseProductFuncActivity extends BaseActivity {
 
                     case "importproduct":
                         intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
-                        intent.putExtra("STATUS", HaiSetting.PRODUCT_IMPORT);
+                        intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_IMPORT);
                         break;
                     case "exportproduct":
                         intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
-                        intent.putExtra("STATUS", HaiSetting.PRODUCT_EXPORT);
+                        intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_EXPORT);
                         break;
                     case "staffimportproduct":
                         intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
-                        intent.putExtra("STATUS", HaiSetting.PRODUCT_HELP_SCAN);
+                        intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_HELP_SCAN);
                         break;
                     case "savepoint":
                         intent = new Intent(ChooseProductFuncActivity.this, EventSendActivity.class);

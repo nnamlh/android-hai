@@ -99,7 +99,7 @@ public class NotificationUtils {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(HaiSetting.NOTIFICATION_ID, notification);
+        notificationManager.notify(HaiSetting.getInstance().NOTIFICATION_ID, notification);
     }
 
     // Playing notification sound

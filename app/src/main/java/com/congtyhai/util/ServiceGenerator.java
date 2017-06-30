@@ -18,7 +18,7 @@ public class ServiceGenerator {
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
-                    .baseUrl(HaiSetting.BASEURL)
+                    .baseUrl(HaiSetting.getInstance().BASEURL)
                     .addConverterFactory(GsonConverterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {

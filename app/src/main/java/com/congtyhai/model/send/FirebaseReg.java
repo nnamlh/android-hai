@@ -12,9 +12,11 @@ public class FirebaseReg {
 
     private String regId;
 
+    private int isUpdate;
 
-    public FirebaseReg(String user, String token, String regId) {
+    public FirebaseReg(String user, String token, String regId, int isUpdate) {
         this.user = user;
+        this.isUpdate = isUpdate;
         this.token = token;
         this.regId = regId;
     }
@@ -41,5 +43,13 @@ public class FirebaseReg {
 
     public void setRegId(String regId) {
         this.regId = regId;
+    }
+
+    public int getIsUpdate() {
+        return isUpdate;
+    }
+
+    public void setIsUpdate(int isUpdate) {
+        this.isUpdate = isUpdate;
     }
 }

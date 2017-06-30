@@ -129,21 +129,24 @@ public class LoginActivity extends AppCompatActivity {
 
                       SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                      String oldUser = sharedPref.getString(HaiSetting.KEY_USER, null);
+                      String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
 
                       if (oldUser != null && !oldUser.equals(response.body().getUser())) {
                           RealmController.getInstance().clearCheckInAll();
                           RealmController.getInstance().clearNotificationAll();
                           RealmController.getInstance().clearMsgToHai();
                           HaiSetting.getInstance().resetListProduct();
+
+
+
                       }
 
                       SharedPreferences.Editor editor = sharedPref.edit();
 
-                      editor.putString(HaiSetting.KEY_USER, response.body().getUser());
-                      editor.putString(HaiSetting.KEY_TOKEN, response.body().getToken());
+                      editor.putString(HaiSetting.getInstance().KEY_USER, response.body().getUser());
+                      editor.putString(HaiSetting.getInstance().KEY_TOKEN, response.body().getToken());
                       //  editor.putString(HaiSetting.KEY_FUNCTION, response.body().getFunction());
-                      editor.putString(HaiSetting.KEY_ROLE, response.body().getRole());
+                      editor.putString(HaiSetting.getInstance().KEY_ROLE, response.body().getRole());
                       HaiSetting.getInstance().ROLE = response.body().getRole();
 
                       editor.commit();

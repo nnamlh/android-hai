@@ -14,7 +14,7 @@ public class ApiClient {
     public static Retrofit getClient() {
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(HaiSetting.BASEURL)
+                    .baseUrl(HaiSetting.getInstance().BASEURL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
