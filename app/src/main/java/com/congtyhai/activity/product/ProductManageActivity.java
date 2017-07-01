@@ -100,7 +100,7 @@ public class ProductManageActivity extends BaseActivity {
             lAgency.setVisibility(View.VISIBLE);
         } else if (status.equals(HaiSetting.getInstance().PRODUCT_TRANSPORT)){
             title = "Điều kho";
-            status = HaiSetting.getInstance().PRODUCT_EXPORT;
+            //status = HaiSetting.getInstance().PRODUCT_EXPORT;
             lReceiver.setVisibility(View.VISIBLE);
         }
         else {
@@ -119,6 +119,7 @@ public class ProductManageActivity extends BaseActivity {
                     resetList();
 
                 Intent intent = new Intent(ProductManageActivity.this, ProductActivity.class);
+                intent.putExtra("STATUS", status);
                 startActivity(intent);
             }
         });
@@ -206,6 +207,9 @@ public class ProductManageActivity extends BaseActivity {
     }
 
     private String chooseStt() {
+        if (status.equals(HaiSetting.getInstance().PRODUCT_TRANSPORT)) {
+            return HaiSetting.getInstance().PRODUCT_EXPORT;
+        }
         return status;
     }
 
