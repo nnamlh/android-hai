@@ -27,7 +27,6 @@ public class SimpleScanActivity extends BaseScannerActivity implements ZBarScann
         mScannerView = new ZBarScannerView(this);
         contentFrame.addView(mScannerView);
 
-
         Intent intent = getIntent();
 
         String keyType = intent.getStringExtra("ScreenKey");
@@ -39,6 +38,7 @@ public class SimpleScanActivity extends BaseScannerActivity implements ZBarScann
     }
 
     public void setupFormats() {
+
         List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
 
         formats.add(new BarcodeFormat(39, "CODE39"));

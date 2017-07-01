@@ -78,6 +78,10 @@ public class ChooseProductFuncActivity extends BaseActivity {
                         intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
                         intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_EXPORT);
                         break;
+                    case "transport":
+                        intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
+                        intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_TRANSPORT);
+                        break;
                     case "staffimportproduct":
                         intent= new Intent(ChooseProductFuncActivity.this, ProductManageActivity.class);
                         intent.putExtra("STATUS", HaiSetting.getInstance().PRODUCT_HELP_SCAN);
@@ -171,10 +175,13 @@ public class ChooseProductFuncActivity extends BaseActivity {
                        infos.add(new ProductChooseFuncInfo(code, "TRA CỨU", R.mipmap.ic_checkproduct));
                        break;
                    case "staffimportproduct":
-                       infos.add(new ProductChooseFuncInfo(code, "QUÉT NHẬP GIÙM", R.mipmap.ic_staffscan));
+                       infos.add(new ProductChooseFuncInfo(code, "NHẬP GIÙM", R.mipmap.ic_staffscan));
                        break;
                    case "exportproduct":
                        infos.add(new ProductChooseFuncInfo(code, "XUẤT KHO", R.mipmap.ic_export));
+                       break;
+                   case "transport":
+                       infos.add(new ProductChooseFuncInfo(code, "ĐIỀU KHO", R.mipmap.ic_dieukho));
                        break;
                }
            }

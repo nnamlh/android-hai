@@ -5,9 +5,11 @@ import android.os.Environment;
 import com.congtyhai.model.receive.AgencyInfo;
 import com.congtyhai.model.receive.EventProduct;
 import com.congtyhai.model.receive.GeneralInfo;
+import com.congtyhai.model.receive.ProductCodeInfo;
 import com.congtyhai.model.receive.ResultEventInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,7 +35,11 @@ public class HaiSetting {
     public String ROLE_WAREHOUSE = "Warehouse";
     public String PRODUCT_IMPORT = "NK";
     public String PRODUCT_EXPORT = "XK";
+    public String PRODUCT_TRANSPORT= "TRANSPORT";
     public String PRODUCT_HELP_SCAN = "HELPSCAN";
+
+
+    private HashMap<String, String> productCodeMap = new HashMap<>();
 
     protected HaiSetting() {
         LIST_PRODUCT = new ArrayList<>();
@@ -224,5 +230,24 @@ public class HaiSetting {
     public void setEventCodeResult(List<GeneralInfo> eventCodeResult) {
         this.eventCodeResult = eventCodeResult;
     }
+
+    public void clearProductCodeMap() {
+        productCodeMap.clear();
+    }
+
+    public void addProductCodeMap(ProductCodeInfo info) {
+       productCodeMap.put(info.getCode(), info.getName());
+    }
+
+    public String  findProductNameByCode(String code) {
+
+        if (productCodeMap.containsKey(code)) {
+            return productCodeMap.get(code);
+        }
+
+        return "KHÔNG PHẢI SẢN PHẨM CỦA HAI";
+    }
+
+
 
 }

@@ -108,9 +108,12 @@ public class MainActivity extends BaseActivity {
                         setListMainFunction(response.body().getFunction());
 
                         if (needUpdate == 1) {
+                            HaiSetting.getInstance().clearProductCodeMap();
                             saveListAgency(response.body().getAgencies());
                             saveListReceive(response.body().getRecivers());
                             saveListProduct(response.body().getProducts());
+
+                            updateDaily();
                         }
                     }
                 }

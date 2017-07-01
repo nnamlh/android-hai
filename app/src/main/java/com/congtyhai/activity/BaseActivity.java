@@ -48,6 +48,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -179,7 +180,7 @@ public class BaseActivity extends AppCompatActivity {
         return new ArrayList<>();
     }
 
-    protected List<ProductCodeInfo> getListProduct() {
+    protected void getListProduct() {
         //  return RealmController.getInstance().getAgency();
         Gson gson = new Gson();
         try {
@@ -193,13 +194,17 @@ public class BaseActivity extends AppCompatActivity {
 
             Type listType = new TypeToken<List<ProductCodeInfo>>() {
             }.getType();
-            return gson.fromJson(br, listType);
+
+
+            List<ProductCodeInfo> productCodeInfos = gson.fromJson(br, listType);
+
+            for(ProductCodeInfo info: productCodeInfos) {
+                HaiSetting.getInstance().addProductCodeMap(info);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return new ArrayList<>();
     }
 
     private void writeFile(String json, String path) {

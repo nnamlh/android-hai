@@ -93,18 +93,33 @@
             android:onClick="addProductClick"
             android:src="@mipmap/ic_add" />
 
+
+        <TextView
+            android:id="@+id/txtcode"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="893 52433"
+            android:background="#fff"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="center_vertical"/>
+
         <EditText
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/btnadd"
+            android:layout_toRightOf="@id/txtcode"
             android:background="#fff"
-            android:hint="Nhập mã sản phẩm.."
+            android:maxLength="9"
             android:imeActionId="@+id/input_text"
             android:imeActionLabel="Thêm"
             android:imeOptions="actionUnspecified"
-            android:inputType="textCapWords"
+            android:inputType="textCapCharacters"
             android:paddingLeft="5dp" />
 
     </RelativeLayout>

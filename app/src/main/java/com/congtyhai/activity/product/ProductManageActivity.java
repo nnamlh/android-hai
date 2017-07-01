@@ -3,6 +3,7 @@ package com.congtyhai.activity.product;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -12,18 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.congtyhai.activity.BaseActivity;
 import com.congtyhai.activity.R;
 import com.congtyhai.activity.search.FindReceiverActivity;
 import com.congtyhai.activity.search.ShowAgencyActivity;
 import com.congtyhai.adapter.GeneralAdapter;
+import com.congtyhai.adapter.ProductManageAdapter;
 import com.congtyhai.model.send.CheckLocationRequest;
 import com.congtyhai.model.receive.GeneralInfo;
 import com.congtyhai.model.HaiLocation;
@@ -34,9 +34,7 @@ import com.congtyhai.model.send.UpdateProductInfo;
 import com.congtyhai.util.ApiClient;
 import com.congtyhai.util.ApiInterface;
 import com.congtyhai.util.HaiSetting;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -51,7 +49,7 @@ public class ProductManageActivity extends BaseActivity {
     Button btnScan;
     @BindView(R.id.listproduct)
     ListView listView;
-    ArrayAdapter<String> adapter;
+    ProductManageAdapter adapter;
 
     GeneralAdapter adapterResult;
 
@@ -77,6 +75,8 @@ public class ProductManageActivity extends BaseActivity {
 
     String title;
 
+    String companyCode = "89352433";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +98,12 @@ public class ProductManageActivity extends BaseActivity {
         } else if (status.equals(HaiSetting.getInstance().PRODUCT_HELP_SCAN)) {
             title = "Nhập giúp";
             lAgency.setVisibility(View.VISIBLE);
-        } else {
+        } else if (status.equals(HaiSetting.getInstance().PRODUCT_TRANSPORT)){
+            title = "Điều kho";
+            status = HaiSetting.getInstance().PRODUCT_EXPORT;
+            lReceiver.setVisibility(View.VISIBLE);
+        }
+        else {
             onBackPressed();
         }
 
@@ -119,8 +124,8 @@ public class ProductManageActivity extends BaseActivity {
         });
 
         HaiSetting.getInstance().resetListProduct();
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, HaiSetting.getInstance().getLIST_PRODUCT());
+
+        adapter = new ProductManageAdapter(this, HaiSetting.getInstance().getLIST_PRODUCT());
 
 
         listView.setAdapter(adapter);
@@ -163,6 +168,8 @@ public class ProductManageActivity extends BaseActivity {
         eReceiver.setInputType(android.text.InputType.TYPE_CLASS_TEXT
                 + android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 
+        new ReadDataTask().execute();
+
     }
 
     public void addProductClick(View view) {
@@ -179,18 +186,18 @@ public class ProductManageActivity extends BaseActivity {
             });
         } else {
 
-            if (editText.getText().length() < 17) {
+            if (editText.getText().length() < 9) {
                 showAlert("Cảnh báo", "Không hợp lệ.", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
-            } else {
+            }  else {
                 if (!isReset)
                     resetList();
 
-                HaiSetting.getInstance().addListProduct(editText.getText().toString());
+                HaiSetting.getInstance().addListProduct(companyCode + editText.getText().toString());
                 adapter.notifyDataSetChanged();
                 txtCount.setText("Tổng số lượng: " + HaiSetting.getInstance().countListProduct());
                 editText.setText("");
@@ -506,7 +513,7 @@ public class ProductManageActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
 
-        showAlertCancel("Thoát khỏi màn hình này ?", "", new DialogInterface.OnClickListener() {
+        showAlertCancel("Cảnh báo", "Bạn thoát màn hình này nếu chưa cập nhật dữ liệu sẽ không được lưu lại !", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ProductManageActivity.super.onBackPressed();
@@ -519,8 +526,7 @@ public class ProductManageActivity extends BaseActivity {
     private void resetList() {
         isReset = true;
         HaiSetting.getInstance().resetListProduct();
-        adapter = new ArrayAdapter<String>(ProductManageActivity.this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, HaiSetting.getInstance().getLIST_PRODUCT());
+        adapter = new ProductManageAdapter(this, HaiSetting.getInstance().getLIST_PRODUCT());
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -533,5 +539,27 @@ public class ProductManageActivity extends BaseActivity {
         listView.setAdapter(adapter);
 
         txtCount.setText("Tổng số lượng : " + HaiSetting.getInstance().countListProduct());
+    }
+
+
+    private class ReadDataTask extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... urls) {
+
+            try{
+                getListProduct();
+
+            } catch (Exception e) {
+
+            }
+            return  "";        }
+
+        @Override
+        protected void onPreExecute() {
+            showpDialog();
+        }
+
+        protected void onPostExecute(String result) {
+            hidepDialog();
+        }
     }
 }
