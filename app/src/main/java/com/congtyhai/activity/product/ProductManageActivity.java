@@ -24,6 +24,7 @@ import com.congtyhai.activity.search.FindReceiverActivity;
 import com.congtyhai.activity.search.ShowAgencyActivity;
 import com.congtyhai.adapter.GeneralAdapter;
 import com.congtyhai.adapter.ProductManageAdapter;
+import com.congtyhai.model.data.DHistoryProductScan;
 import com.congtyhai.model.send.CheckLocationRequest;
 import com.congtyhai.model.receive.GeneralInfo;
 import com.congtyhai.model.HaiLocation;
@@ -34,9 +35,17 @@ import com.congtyhai.model.send.UpdateProductInfo;
 import com.congtyhai.util.ApiClient;
 import com.congtyhai.util.ApiInterface;
 import com.congtyhai.util.HaiSetting;
+import com.congtyhai.util.RealmController;
+import com.google.gson.Gson;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -260,7 +269,8 @@ public class ProductManageActivity extends BaseActivity {
                         }
                     });
 
-
+                    saveHistory(1, response.body().getProducts(), 1);
+                    
                 } else {
                     showAlert("Lỗi cập nhật", response.body().getMsg(), new DialogInterface.OnClickListener() {
                         @Override
@@ -285,7 +295,7 @@ public class ProductManageActivity extends BaseActivity {
         });
     }
 
-    private void sendStaffHelp(int near) {
+    private void sendStaffHelp(final int near) {
 
         showpDialog();
         ApiInterface apiService =
@@ -319,6 +329,7 @@ public class ProductManageActivity extends BaseActivity {
                         }
                     });
 
+                    saveHistory(1, response.body().getProducts(), near);
 
                 } else {
                     showAlert("Lỗi cập nhật", response.body().getMsg(), new DialogInterface.OnClickListener() {
@@ -420,6 +431,27 @@ public class ProductManageActivity extends BaseActivity {
         });
     }
 
+    private void saveHistory(final int isUpdate, final List<GeneralInfo> result, final int isNear) {
+        final String timeStamp = new SimpleDateFormat("MM/dd/yyyy HH:mm",
+                Locale.getDefault()).format(new Date());
+        final Gson gson = new Gson();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                DHistoryProductScan historyProductScan = realm.createObject(DHistoryProductScan.class, RealmController.getInstance().getNextKey(DHistoryProductScan.class));
+                historyProductScan.setAgency(txtAgency.getText().toString());
+                historyProductScan.setReceive(eReceiver.getText().toString());
+                historyProductScan.setStatus(chooseStt());
+                historyProductScan.setIsUpdate(isUpdate);
+                historyProductScan.setScreen(status);
+                historyProductScan.setTitleScreen(title);
+                historyProductScan.setTime(timeStamp);
+                historyProductScan.setProductResult(gson.toJson(result));
+                historyProductScan.setProduct(gson.toJson(HaiSetting.getInstance().getLIST_PRODUCT()));
+                historyProductScan.setIsNear(isNear);
+            }
+        });
+    }
 
     private void showAlertUpdate() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(ProductManageActivity.this);

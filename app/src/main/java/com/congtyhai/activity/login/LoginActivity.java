@@ -1,4 +1,4 @@
-package com.congtyhai.activity;
+package com.congtyhai.activity.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.congtyhai.activity.MainActivity;
+import com.congtyhai.activity.R;
 import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.util.HaiSetting;
 import com.congtyhai.util.LoginService;
@@ -41,6 +43,13 @@ public class LoginActivity extends AppCompatActivity {
 
         mProgressView = findViewById(R.id.login_progress);
         btnOk = (Button) findViewById(R.id.login_ok);
+
+        Intent intent = getIntent();
+
+        String userGet = intent.getStringExtra("username");
+
+        eUser.setEnabled(false);
+        eUser.setText(userGet);
 
         ePass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -124,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
               if (response.body() != null){
                   if ("1".equals(response.body().getId())) {
-                      HaiSetting.getInstance().USER = eUser.getText().toString();
+                                           HaiSetting.getInstance().USER = eUser.getText().toString();
                       HaiSetting.getInstance().TOKEN = response.body().getToken();
 
                       SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

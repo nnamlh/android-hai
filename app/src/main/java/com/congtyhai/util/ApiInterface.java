@@ -1,5 +1,7 @@
 package com.congtyhai.util;
 
+import com.congtyhai.model.receive.CheckUserLoginResult;
+import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.model.send.AgencyRequest;
 import com.congtyhai.model.receive.AgencyResult;
 import com.congtyhai.model.send.AuthInfo;
@@ -93,6 +95,17 @@ public interface ApiInterface {
     @POST("rest/getMainInfo")
     Call<ResultTopic> updateReg(@Body FirebaseReg firebaseReg);
 
+    @GET("rest/checkuserlogin")
+    Call<CheckUserLoginResult> checkUserLogin(
+            @Query("user") String user,
+            @Query("phone") String phone);
+
+    @GET("rest/loginactivaton")
+    Call<LoginResult> loginActivaton(
+            @Query("user") String user,
+            @Query("otp") String phone);
+
+
     // check sesssion
     @GET("rest/loginsession")
     Call<ResultInfo> checkSession(
@@ -102,5 +115,6 @@ public interface ApiInterface {
     @Multipart
     @POST("upload/checkin")
     Call<ResultInfo> uploadImage(@Part MultipartBody.Part file, @Part("user") RequestBody user,@Part("token") RequestBody token, @Part("extension") RequestBody extension);
+
 
 }

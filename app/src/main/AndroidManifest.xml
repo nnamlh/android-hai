@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -46,11 +47,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_login"
             android:theme="@style/Login.NoActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
@@ -62,13 +62,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".checkin.CheckInActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_check_in"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".CheckStaffActivity"
             android:configChanges="orientation|screenSize"
@@ -92,13 +90,11 @@
             android:name=".product.ProductActivity"
             android:label="@string/title_activity_product"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".product.ProductManageActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_product_manage"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".notification.NotificationActivity"
             android:configChanges="orientation|screenSize"
@@ -114,103 +110,96 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_check_in_history"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".event.EventActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".support.SettingActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_setting"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".search.ShowAgencyActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_show_agency"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".support.MsgToHaiActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_msg_to_hai"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".event.EventDetailActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_event_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".event.EventSendActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_event_send"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".product.TrackingActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_tracking"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".product.ChooseProductFuncActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_choose_product_func"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".notification.NotificationDetailActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_notification_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".support.UserInfoActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_user_info"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".event.ScanEventCodeActivity"
             android:label="@string/title_activity_scan_event_code"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".support.ContactActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_contact"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".product.ProductEventDetailActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_product_event_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".util.SimpleScanActivity"
             android:label="@string/simple_scan_title"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".event.SendCodeResultActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_send_code_result"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".search.FindReceiverActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_find_receiver"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".util.ShowCameraActivity"
+        <activity
+            android:name=".util.ShowCameraActivity"
             android:theme="@style/Theme.Demo" />
+        <activity android:name=".product.ProductHistoryActivity" />
+        <activity
+            android:name=".login.EnterNameActivity"
+            android:label="CÔNG TY CP NÔNG DƯỢC HAI"></activity>
+        <activity
+            android:name=".login.LoginActivationActivity"
+            android:label="CÔNG TY CP NÔNG DƯỢC HAI">
+
+        </activity>
     </application>
 
 </manifest>

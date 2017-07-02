@@ -8,7 +8,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.congtyhai.util.LruBitmapCache;
-import com.squareup.leakcanary.LeakCanary;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -31,10 +30,6 @@ public class AppController extends Application {
         super.onCreate();
         Realm.init(getApplicationContext());
         mInstance = this;
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(this);
     }
 
     public static synchronized AppController getInstance() {

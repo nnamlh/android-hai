@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.congtyhai.activity.BaseActivity;
-import com.congtyhai.activity.LoginActivity;
+import com.congtyhai.activity.login.EnterNameActivity;
+import com.congtyhai.activity.login.LoginActivity;
 import com.congtyhai.activity.R;
 import com.congtyhai.model.send.AuthInfo;
 import com.congtyhai.model.receive.ResultInfo;
@@ -107,7 +108,7 @@ public class SettingActivity extends BaseActivity {
                     editor.putString(HaiSetting.getInstance().KEY_UPDATE_DAILY, null);
                     editor.commit();
 
-                    Intent intent2 = new Intent(SettingActivity.this, LoginActivity.class);
+                    Intent intent2 = new Intent(SettingActivity.this, EnterNameActivity.class);
                     intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent2);
                     finish();

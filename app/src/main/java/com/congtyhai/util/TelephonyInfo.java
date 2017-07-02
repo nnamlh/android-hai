@@ -13,6 +13,7 @@ public class TelephonyInfo {
     private static TelephonyInfo telephonyInfo;
     private String imsiSIM1;
     private String imsiSIM2;
+    private String linePhone1;
     private boolean isSIM1Ready;
     private boolean isSIM2Ready;
 
@@ -70,6 +71,7 @@ public class TelephonyInfo {
             telephonyInfo.imsiSIM1 = telephonyManager.getDeviceId();
 
             telephonyInfo.imsiSIM2 = null;
+            telephonyInfo.linePhone1 = telephonyManager.getLine1Number();
 
             try {
                 telephonyInfo.imsiSIM1 = getDeviceIdBySlot(context, "getDeviceIdGemini", 0);
@@ -178,6 +180,14 @@ public class TelephonyInfo {
 
     public void setPhoneSIM1(String phoneSIM1) {
         this.phoneSIM1 = phoneSIM1;
+    }
+
+    public String getLinePhone1() {
+        return linePhone1;
+    }
+
+    public void setLinePhone1(String linePhone1) {
+        this.linePhone1 = linePhone1;
     }
 
 

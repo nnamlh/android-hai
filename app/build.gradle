@@ -26,7 +26,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    // Realm
+
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.0.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -41,13 +42,9 @@ dependencies {
     compile 'me.dm7.barcodescanner:zbar:1.9'
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.flurgle:camerakit:0.9.17'
-    testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-location:11.0.0'
-
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 }
 apply plugin: 'com.google.gms.google-services'

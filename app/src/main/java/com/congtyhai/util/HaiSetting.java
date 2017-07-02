@@ -38,6 +38,7 @@ public class HaiSetting {
     public String PRODUCT_TRANSPORT= "TRANSPORT";
     public String PRODUCT_HELP_SCAN = "HELPSCAN";
 
+    public final String OTP_DELIMITER = ":";
 
     private HashMap<String, String> productCodeMap = new HashMap<>();
 

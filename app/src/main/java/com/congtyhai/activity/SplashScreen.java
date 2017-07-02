@@ -16,15 +16,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.congtyhai.activity.login.EnterNameActivity;
+import com.congtyhai.activity.login.LoginActivity;
 import com.congtyhai.app.AppController;
 import com.congtyhai.util.HaiSetting;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -180,7 +180,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_PERMISSION_SETTING) {
             if (ActivityCompat.checkSelfPermission(SplashScreen.this, permissionsRequired[0]) == PackageManager.PERMISSION_GRANTED) {
-                //Got Permission
                 proceedAfterPermission();
             }
         }
@@ -196,7 +195,7 @@ public class SplashScreen extends AppCompatActivity {
                 String role = sharedPref.getString(HaiSetting.getInstance().KEY_ROLE, null);
 
                 if (token == null) {
-                    Intent i = new Intent(SplashScreen.this, LoginActivity.class);
+                    Intent i = new Intent(SplashScreen.this, EnterNameActivity.class);
                     startActivity(i);
                     finish();
                 } else {
@@ -290,7 +289,7 @@ public class SplashScreen extends AppCompatActivity {
                 .setPositiveButton("Đăng nhập", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        Intent i = new Intent(SplashScreen.this, LoginActivity.class);
+                        Intent i = new Intent(SplashScreen.this, EnterNameActivity.class);
                         startActivity(i);
                         finish();
                     }

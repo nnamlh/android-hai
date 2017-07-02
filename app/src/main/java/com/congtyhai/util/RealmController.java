@@ -1,6 +1,7 @@
 package com.congtyhai.util;
 
 import com.congtyhai.model.data.DCheckIn;
+import com.congtyhai.model.data.DHistoryProductScan;
 import com.congtyhai.model.data.DMsgToHai;
 import com.congtyhai.model.data.NotificationInfo;
 import io.realm.Realm;
@@ -104,6 +105,15 @@ public class RealmController {
         return realm.where(DMsgToHai.class).findAll();
     }
 
+    //HistoryProductScan
+    public RealmResults<DHistoryProductScan> getHistoryProductScan() {
+
+        return realm.where(DHistoryProductScan.class).findAll();
+    }
+    public DHistoryProductScan getHistoryProductScan (long id) {
+
+        return realm.where(DHistoryProductScan.class).equalTo("id", id).findFirst();
+    }
 
     //query a single item with the given id
     public NotificationInfo getNotification(String id) {

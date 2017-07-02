@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    tools:context="com.congtyhai.activity.login.LoginActivationActivity">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/logofull"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kích hoạt"
+        android:textSize="24sp"
+        android:id="@+id/txtactivation"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_marginTop="120dp" />
+
+    <TextView
+        android:id="@+id/txtinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lê duy anh \nCông ty cổ phần xa \nđiện thoại: 09323233233\n Một mã đã gửi về điện thoại 09739622274 xin vui lòng nhập mã để xác nhận"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:layout_below="@id/txtactivation"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/eotp"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_below="@id/txtinfo"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:paddingLeft="5dp" />
+
+
+    <Button
+        android:id="@+id/btnsend"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:background="@drawable/btn_checkin"
+        android:text="Tiếp tục"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@drawable/text_color_checkin" />
+
+
+    <Button
+        android:id="@+id/btnback"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:background="@drawable/btn_checkin"
+        android:text="Quay lại"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_toLeftOf="@id/btnsend"
+        android:layout_marginRight="30dp"
+        android:textColor="@drawable/text_color_checkin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/btnsend"
+        android:background="#333333"/>
+
+
+
+</RelativeLayout>
