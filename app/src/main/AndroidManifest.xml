@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -94,6 +94,11 @@
             android:name=".product.ProductManageActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_product_manage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".product.ProductHistoryActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Xem lịch sử"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".notification.NotificationActivity"
@@ -191,15 +196,31 @@
         <activity
             android:name=".util.ShowCameraActivity"
             android:theme="@style/Theme.Demo" />
-        <activity android:name=".product.ProductHistoryActivity" />
         <activity
             android:name=".login.EnterNameActivity"
-            android:label="CÔNG TY CP NÔNG DƯỢC HAI"></activity>
+            android:label="CÔNG TY CP NÔNG DƯỢC HAI" />
         <activity
             android:name=".login.LoginActivationActivity"
-            android:label="CÔNG TY CP NÔNG DƯỢC HAI">
+            android:label="CÔNG TY CP NÔNG DƯỢC HAI"></activity>
+        <activity android:name=".product.ProductHistoryDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Chi tiết"
+            android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
+
+        <!-- SMS Receiver -->
+        <receiver android:name="com.congtyhai.util.SmsReceiver">
+            <intent-filter android:priority="99999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- Intent service -->
+        <service
+            android:name="com.congtyhai.util.HttpService"
+            android:exported="false" />
     </application>
 
 </manifest>

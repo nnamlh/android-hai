@@ -21,6 +21,15 @@ public class CheckUserLoginResult {
     @SerializedName("phone")
     private String phone ;
 
+    @SerializedName("token")
+    private String token;
+
+    @SerializedName("role")
+    private String role;
+
+    @SerializedName("user")
+    private String user;
+
     public String getId() {
         return id;
     }
@@ -67,5 +76,29 @@ public class CheckUserLoginResult {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

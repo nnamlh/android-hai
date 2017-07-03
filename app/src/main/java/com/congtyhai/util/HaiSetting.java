@@ -1,7 +1,5 @@
 package com.congtyhai.util;
 
-import android.os.Environment;
-
 import com.congtyhai.model.receive.AgencyInfo;
 import com.congtyhai.model.receive.EventProduct;
 import com.congtyhai.model.receive.GeneralInfo;
@@ -39,6 +37,7 @@ public class HaiSetting {
     public String PRODUCT_HELP_SCAN = "HELPSCAN";
 
     public final String OTP_DELIMITER = ":";
+    public final String SMS_ORIGIN = "NONGDUOCHAI";
 
     private HashMap<String, String> productCodeMap = new HashMap<>();
 

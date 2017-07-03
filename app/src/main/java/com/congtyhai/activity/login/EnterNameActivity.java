@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -14,11 +16,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.congtyhai.activity.BaseActivity;
+import com.congtyhai.activity.MainActivity;
 import com.congtyhai.activity.R;
 import com.congtyhai.model.receive.CheckUserLoginResult;
 import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.util.ApiClient;
 import com.congtyhai.util.ApiInterface;
+import com.congtyhai.util.HaiSetting;
+import com.congtyhai.util.RealmController;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,6 +72,7 @@ public class EnterNameActivity extends AppCompatActivity {
         showpDialog();
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
+        HaiSetting.getInstance().USER = eUser.getText().toString();
         Call<CheckUserLoginResult> call = apiService.checkUserLogin(eUser.getText().toString(), getPhone());
 
         call.enqueue(new Callback<CheckUserLoginResult>() {
@@ -95,6 +101,36 @@ public class EnterNameActivity extends AppCompatActivity {
                         intent.putExtra("code", response.body().getCode());
                         intent.putExtra("phone", response.body().getPhone());
 
+                        startActivity(intent);
+                        finish();
+                    } else if (response.body().getId().equals("3")) {
+
+                        HaiSetting.getInstance().USER = response.body().getUser();
+                        HaiSetting.getInstance().TOKEN = response.body().getToken();
+
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                        String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
+
+                        if (oldUser != null && !oldUser.equals(response.body().getUser())) {
+                           // RealmController.getInstance().clearCheckInAll();
+                           // RealmController.getInstance().clearNotificationAll();
+                          //  RealmController.getInstance().clearMsgToHai();
+                            RealmController.getInstance().clearAllData();
+                            HaiSetting.getInstance().resetListProduct();
+                        }
+
+                        SharedPreferences.Editor editor = sharedPref.edit();
+
+                        editor.putString(HaiSetting.getInstance().KEY_USER, response.body().getUser());
+                        editor.putString(HaiSetting.getInstance().KEY_TOKEN, response.body().getToken());
+                        //  editor.putString(HaiSetting.KEY_FUNCTION, response.body().getFunction());
+                        editor.putString(HaiSetting.getInstance().KEY_ROLE, response.body().getRole());
+                        HaiSetting.getInstance().ROLE = response.body().getRole();
+
+                        editor.commit();
+
+                        Intent intent = new Intent(EnterNameActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

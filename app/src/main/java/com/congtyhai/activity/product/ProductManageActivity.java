@@ -269,7 +269,7 @@ public class ProductManageActivity extends BaseActivity {
                         }
                     });
 
-                    saveHistory(1, response.body().getProducts(), 1);
+                    saveHistory(1, response.body().getProducts(), 1, countSucces, countErorr);
                     
                 } else {
                     showAlert("Lỗi cập nhật", response.body().getMsg(), new DialogInterface.OnClickListener() {
@@ -329,7 +329,7 @@ public class ProductManageActivity extends BaseActivity {
                         }
                     });
 
-                    saveHistory(1, response.body().getProducts(), near);
+                    saveHistory(1, response.body().getProducts(), near, countSucces, countErorr);
 
                 } else {
                     showAlert("Lỗi cập nhật", response.body().getMsg(), new DialogInterface.OnClickListener() {
@@ -431,7 +431,7 @@ public class ProductManageActivity extends BaseActivity {
         });
     }
 
-    private void saveHistory(final int isUpdate, final List<GeneralInfo> result, final int isNear) {
+    private void saveHistory(final int isUpdate, final List<GeneralInfo> result, final int isNear, final int countSucess, final int countFail) {
         final String timeStamp = new SimpleDateFormat("MM/dd/yyyy HH:mm",
                 Locale.getDefault()).format(new Date());
         final Gson gson = new Gson();
@@ -442,13 +442,13 @@ public class ProductManageActivity extends BaseActivity {
                 historyProductScan.setAgency(txtAgency.getText().toString());
                 historyProductScan.setReceive(eReceiver.getText().toString());
                 historyProductScan.setStatus(chooseStt());
-                historyProductScan.setIsUpdate(isUpdate);
                 historyProductScan.setScreen(status);
-                historyProductScan.setTitleScreen(title);
                 historyProductScan.setTime(timeStamp);
+                historyProductScan.setCountSuccess("" + countSucess);
+                historyProductScan.setQuantity(result.size() + "");
+                historyProductScan.setCountFail("" + countFail);
                 historyProductScan.setProductResult(gson.toJson(result));
                 historyProductScan.setProduct(gson.toJson(HaiSetting.getInstance().getLIST_PRODUCT()));
-                historyProductScan.setIsNear(isNear);
             }
         });
     }
@@ -533,12 +533,9 @@ public class ProductManageActivity extends BaseActivity {
 
         switch (item.getItemId()) {
             case R.id.action_history:
-                showAlert("Xóa danh sách sản phẩm", "Danh sách sản phẩm bạn mới quét sẽ xóa hết toàn bộ.", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        resetList();
-                    }
-                });
+                Intent intent = new Intent(ProductManageActivity.this, ProductHistoryActivity.class);
+                startActivity(intent);
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

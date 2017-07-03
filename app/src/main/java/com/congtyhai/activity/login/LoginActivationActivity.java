@@ -61,7 +61,7 @@ public class LoginActivationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        txtInfo.setText(intent.getStringExtra("fullname")+ "\n" + intent.getStringExtra("storename") + "\nĐiện thoại: " + intent.getStringExtra("phone") );
+        txtInfo.setText(intent.getStringExtra("storename") + "\nĐiện thoại: " + intent.getStringExtra("phone") + "\nĐể tiếp tục vui lòng nhập mã kích hoặt được gửi đến số điện thoại mã quý khách đã đăng kí");
 
         user = intent.getStringExtra("username");
 
@@ -126,9 +126,10 @@ public class LoginActivationActivity extends AppCompatActivity {
                         String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
 
                         if (oldUser != null && !oldUser.equals(response.body().getUser())) {
-                            RealmController.getInstance().clearCheckInAll();
-                            RealmController.getInstance().clearNotificationAll();
-                            RealmController.getInstance().clearMsgToHai();
+                           // RealmController.getInstance().clearCheckInAll();
+                           // RealmController.getInstance().clearNotificationAll();
+                           // RealmController.getInstance().clearMsgToHai();
+                            RealmController.getInstance().clearAllData();
                             HaiSetting.getInstance().resetListProduct();
                         }
 

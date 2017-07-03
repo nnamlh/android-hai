@@ -70,7 +70,6 @@
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
-                    android:enabled="false"
                     android:layout_toLeftOf="@id/btnfind"
                     android:background="#fff"
                     android:paddingLeft="5dp" />

@@ -17,12 +17,14 @@ import android.widget.Toast;
 
 import com.congtyhai.activity.MainActivity;
 import com.congtyhai.activity.R;
+import com.congtyhai.model.data.DHistoryProductScan;
 import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.util.HaiSetting;
 import com.congtyhai.util.LoginService;
 import com.congtyhai.util.RealmController;
 import com.congtyhai.util.ServiceGenerator;
 
+import io.realm.RealmObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -141,13 +143,11 @@ public class LoginActivity extends AppCompatActivity {
                       String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
 
                       if (oldUser != null && !oldUser.equals(response.body().getUser())) {
-                          RealmController.getInstance().clearCheckInAll();
-                          RealmController.getInstance().clearNotificationAll();
-                          RealmController.getInstance().clearMsgToHai();
+                         // RealmController.getInstance().clearCheckInAll();
+                         // RealmController.getInstance().clearNotificationAll();
+                        //  RealmController.getInstance().clearMsgToHai();
+                          RealmController.getInstance().clearAllData();
                           HaiSetting.getInstance().resetListProduct();
-
-
-
                       }
 
                       SharedPreferences.Editor editor = sharedPref.edit();

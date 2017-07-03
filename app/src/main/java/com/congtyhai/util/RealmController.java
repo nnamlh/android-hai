@@ -85,7 +85,15 @@ public class RealmController {
 
         });
     }
+    public void clearAllData() {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.deleteAll();
+            }
 
+        });
+    }
 
     //find all objects in the Book.class
     public RealmResults<NotificationInfo> getNotificaitons() {
@@ -132,6 +140,13 @@ public class RealmController {
 
         return realm.where(NotificationInfo.class)
                 .equalTo("read", 0).findAll();
+
+    }
+
+    public DHistoryProductScan queryHistoryProductScan(long id) {
+
+        return realm.where(DHistoryProductScan.class)
+                .equalTo("id", id).findFirst();
 
     }
 }

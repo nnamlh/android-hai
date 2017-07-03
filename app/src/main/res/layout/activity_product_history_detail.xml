@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.congtyhai.activity.product.ProductHistoryDetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.congtyhai.activity.product.ProductHistoryDetailActivity"
+        tools:showIn="@layout/activity_product_history_detail"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:id="@+id/txtaction"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/txtaction"
+            android:id="@+id/txtreceive"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtquantity"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:text="TL: 100"
+            android:layout_below="@id/txtreceive"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center|center_vertical"
+            android:drawableRight="@mipmap/ic_success"
+            android:text=""
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginTop="5dp"
+            android:drawablePadding="5dp"
+            android:id="@+id/txtsuccess"
+            android:layout_below="@id/txtreceive"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center|center_vertical"
+            android:drawableRight="@mipmap/ic_fail"
+            android:drawablePadding="5dp"
+            android:text=""
+            android:textColor="#000"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:id="@+id/txtfail"
+            android:layout_below="@id/txtreceive"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#333333"
+            android:id="@+id/txtdivide"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/txtquantity"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtdivide"
+            android:id="@+id/list"/>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

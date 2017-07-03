@@ -20,9 +20,9 @@ public class DHistoryProductScan extends RealmObject {
     private String agency;
     private String product;
     private String productResult;
-    private int isUpdate;
-    private String titleScreen;
-    private int isNear;
+    private String countSuccess;
+    private String countFail;
+    private String quantity;
 
     public String getTime() {
         return time;
@@ -80,13 +80,6 @@ public class DHistoryProductScan extends RealmObject {
         this.productResult = productResult;
     }
 
-    public int getIsUpdate() {
-        return isUpdate;
-    }
-
-    public void setIsUpdate(int isUpdate) {
-        this.isUpdate = isUpdate;
-    }
 
     public long getId() {
         return id;
@@ -96,19 +89,27 @@ public class DHistoryProductScan extends RealmObject {
         this.id = id;
     }
 
-    public String getTitleScreen() {
-        return titleScreen;
+    public String getCountSuccess() {
+        return countSuccess;
     }
 
-    public void setTitleScreen(String titleScreen) {
-        this.titleScreen = titleScreen;
+    public void setCountSuccess(String countSuccess) {
+        this.countSuccess = countSuccess;
     }
 
-    public int getIsNear() {
-        return isNear;
+    public String getCountFail() {
+        return countFail;
     }
 
-    public void setIsNear(int isNear) {
-        this.isNear = isNear;
+    public void setCountFail(String countFail) {
+        this.countFail = countFail;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }
