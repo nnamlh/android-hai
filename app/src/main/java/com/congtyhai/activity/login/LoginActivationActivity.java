@@ -24,7 +24,9 @@ import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.util.ApiClient;
 import com.congtyhai.util.ApiInterface;
 import com.congtyhai.util.HaiSetting;
+import com.congtyhai.util.LoginService;
 import com.congtyhai.util.RealmController;
+import com.congtyhai.util.ServiceGenerator;
 
 
 import butterknife.BindView;
@@ -100,9 +102,10 @@ public class LoginActivationActivity extends AppCompatActivity {
 
     private void makeRequest() {
         showpDialog();
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        Call<LoginResult> call = apiService.loginActivaton(user, eOtp.getText().toString());
+
+        LoginService apiService = ServiceGenerator.createService(LoginService.class,user, eOtp.getText().toString());
+
+        Call<LoginResult> call = apiService.loginActivaton();
 
         call.enqueue(new Callback<LoginResult>() {
             @Override

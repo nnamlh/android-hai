@@ -1,5 +1,6 @@
 package com.congtyhai.util;
 
+import com.congtyhai.model.receive.CheckUserLoginResult;
 import com.congtyhai.model.receive.LoginResult;
 
 import retrofit2.Call;
@@ -13,4 +14,11 @@ import retrofit2.http.Query;
 public interface LoginService {
     @GET("rest/login")
     Call<LoginResult> basicLogin(@Query("imei") String imei);
+
+    @GET("rest/checkuserlogin")
+    Call<CheckUserLoginResult> checkUserLogin();
+
+    @GET("rest/loginactivaton")
+    Call<LoginResult> loginActivaton();
+
 }

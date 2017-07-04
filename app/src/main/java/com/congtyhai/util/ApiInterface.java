@@ -95,15 +95,6 @@ public interface ApiInterface {
     @POST("rest/getMainInfo")
     Call<ResultTopic> updateReg(@Body FirebaseReg firebaseReg);
 
-    @GET("rest/checkuserlogin")
-    Call<CheckUserLoginResult> checkUserLogin(
-            @Query("user") String user,
-            @Query("phone") String phone);
-
-    @GET("rest/loginactivaton")
-    Call<LoginResult> loginActivaton(
-            @Query("user") String user,
-            @Query("otp") String phone);
 
 
     // check sesssion

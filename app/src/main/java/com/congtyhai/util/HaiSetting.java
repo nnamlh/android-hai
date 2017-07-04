@@ -146,10 +146,10 @@ public class HaiSetting {
     public final String PATH_PRODUCT_JSON = "/product.json";
 
     public  final String KEY_EVENT_COUNT = "COUNTEVENT";
-    //public static final String BASEURL = "http://api.nongduochai.vn/api/";
-    //public static final String BASEURL_UPLOAD = "http://cskh.nongduochai.vn/";
-    public final String BASEURL = "http://221.133.7.92:802/api/";
-    public final String BASEURL_UPLOAD = "http://221.133.7.92:801/";
+    public static final String BASEURL = "http://api.nongduochai.vn/api/";
+    public static final String BASEURL_UPLOAD = "http://cskh.nongduochai.vn/";
+    //public final String BASEURL = "http://221.133.7.92:802/api/";
+    //public final String BASEURL_UPLOAD = "http://221.133.7.92:801/";
 
 
     public final String KEY_USER = "userlogin";

@@ -23,7 +23,9 @@ import com.congtyhai.model.receive.LoginResult;
 import com.congtyhai.util.ApiClient;
 import com.congtyhai.util.ApiInterface;
 import com.congtyhai.util.HaiSetting;
+import com.congtyhai.util.LoginService;
 import com.congtyhai.util.RealmController;
+import com.congtyhai.util.ServiceGenerator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,10 +72,11 @@ public class EnterNameActivity extends AppCompatActivity {
 
     private void makeRequest() {
         showpDialog();
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+       // ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         HaiSetting.getInstance().USER = eUser.getText().toString();
-        Call<CheckUserLoginResult> call = apiService.checkUserLogin(eUser.getText().toString(), getPhone());
+
+        LoginService apiService = ServiceGenerator.createService(LoginService.class, eUser.getText().toString(), getPhone());
+        Call<CheckUserLoginResult> call = apiService.checkUserLogin();
 
         call.enqueue(new Callback<CheckUserLoginResult>() {
             @Override

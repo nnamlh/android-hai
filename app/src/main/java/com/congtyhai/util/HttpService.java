@@ -55,56 +55,7 @@ public class HttpService extends IntentService {
      * @param otp otp received in the SMS
      */
     private void verifyOtp(final String otp) {
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        Call<LoginResult> call = apiService.loginActivaton(HaiSetting.getInstance().USER, otp);
 
-        call.enqueue(new Callback<LoginResult>() {
-            @Override
-            public void onResponse(Call<LoginResult> call, retrofit2.Response<LoginResult> response) {
-
-
-                if (response.body() != null) {
-                    if(response.body().getId().equals("0")) {
-                        Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_LONG).show();
-                    } else{
-                        HaiSetting.getInstance().USER = response.body().getUser();
-                        HaiSetting.getInstance().TOKEN = response.body().getToken();
-
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-                        String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
-
-                        if (oldUser != null && !oldUser.equals(response.body().getUser())) {
-                            RealmController.getInstance().clearCheckInAll();
-                            RealmController.getInstance().clearNotificationAll();
-                            RealmController.getInstance().clearMsgToHai();
-                            HaiSetting.getInstance().resetListProduct();
-                        }
-
-                        SharedPreferences.Editor editor = sharedPref.edit();
-
-                        editor.putString(HaiSetting.getInstance().KEY_USER, response.body().getUser());
-                        editor.putString(HaiSetting.getInstance().KEY_TOKEN, response.body().getToken());
-                        //  editor.putString(HaiSetting.KEY_FUNCTION, response.body().getFunction());
-                        editor.putString(HaiSetting.getInstance().KEY_ROLE, response.body().getRole());
-                        HaiSetting.getInstance().ROLE = response.body().getRole();
-
-                        editor.commit();
-
-                        Intent intent = new Intent(HttpService.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Thử lại", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 }
