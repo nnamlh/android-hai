@@ -1,12 +1,15 @@
 package com.congtyhai.activity.login;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -56,14 +59,14 @@ public class EnterNameActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(eUser.getText().toString())) {
+                if (TextUtils.isEmpty(eUser.getText().toString())) {
                     showAlertCancel("Cảnh báo", "Nhập tên tài khoản", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             eUser.forceLayout();
                         }
                     });
-                } else{
+                } else {
                     makeRequest();
                 }
             }
@@ -72,7 +75,7 @@ public class EnterNameActivity extends AppCompatActivity {
 
     private void makeRequest() {
         showpDialog();
-       // ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        // ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         HaiSetting.getInstance().USER = eUser.getText().toString();
 
         LoginService apiService = ServiceGenerator.createService(LoginService.class, eUser.getText().toString(), getPhone());
@@ -84,14 +87,14 @@ public class EnterNameActivity extends AppCompatActivity {
 
 
                 if (response.body() != null) {
-                    if (response.body().getId().equals("0")){
+                    if (response.body().getId().equals("0")) {
                         showAlert("Cảnh báo", response.body().getMsg(), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
                         });
-                    }else if (response.body().getId().equals("1")){
+                    } else if (response.body().getId().equals("1")) {
                         Intent intent = new Intent(EnterNameActivity.this, LoginActivity.class);
                         intent.putExtra("username", eUser.getText().toString());
                         startActivity(intent);
@@ -116,9 +119,9 @@ public class EnterNameActivity extends AppCompatActivity {
                         String oldUser = sharedPref.getString(HaiSetting.getInstance().KEY_USER, null);
 
                         if (oldUser != null && !oldUser.equals(response.body().getUser())) {
-                           // RealmController.getInstance().clearCheckInAll();
-                           // RealmController.getInstance().clearNotificationAll();
-                          //  RealmController.getInstance().clearMsgToHai();
+                            // RealmController.getInstance().clearCheckInAll();
+                            // RealmController.getInstance().clearNotificationAll();
+                            //  RealmController.getInstance().clearMsgToHai();
                             RealmController.getInstance().clearAllData();
                             HaiSetting.getInstance().resetListProduct();
                         }
@@ -150,10 +153,19 @@ public class EnterNameActivity extends AppCompatActivity {
     }
 
     private String getPhone() {
-         TelephonyManager phoneManager = (TelephonyManager)
-           getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-          String phoneNumber = phoneManager.getLine1Number();
-
+        TelephonyManager phoneManager = (TelephonyManager)
+                getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return "";
+        }
+        String phoneNumber = phoneManager.getLine1Number();
 
         return phoneNumber;
     }

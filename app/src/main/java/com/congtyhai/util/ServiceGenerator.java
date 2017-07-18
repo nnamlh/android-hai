@@ -26,7 +26,7 @@ public class ServiceGenerator {
     }
 
     public static <S> S createService(Class<S> serviceClass, String username, String password) {
-        if (username != null && password != null) {
+      //  if (username != null && password != null) {
             String credentials = username + ":" + password;
             final String basic =
                     "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
@@ -45,7 +45,7 @@ public class ServiceGenerator {
                     return chain.proceed(request);
                 }
             });
-        }
+     //   }
 
         OkHttpClient client = httpClient.build();
         Retrofit retrofit = builder.client(client).build();
