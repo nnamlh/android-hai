@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
     private void getTopic() {
         showpDialog();
         SharedPreferences pref = getApplicationContext().getSharedPreferences(HaiSetting.getInstance().SHARED_PREF, 0);
-        String token = pref.getString("regId", null);
+        String token = pref.getString("regId",  "");
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
